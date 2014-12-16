@@ -13,6 +13,8 @@
 		2320EA871A3E398E008C0943 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2320EA861A3E398E008C0943 /* Images.xcassets */; };
 		2320EA8A1A3E398E008C0943 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2320EA881A3E398E008C0943 /* LaunchScreen.xib */; };
 		2320EA961A3E398E008C0943 /* QuizzerDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2320EA951A3E398E008C0943 /* QuizzerDemoTests.swift */; };
+		2320EAA01A3E47C9008C0943 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2320EA9F1A3E47C9008C0943 /* QuestionViewController.swift */; };
+		2320EAA21A3E4839008C0943 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2320EAA11A3E4839008C0943 /* QuestionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		2320EA8F1A3E398E008C0943 /* QuizzerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuizzerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2320EA941A3E398E008C0943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2320EA951A3E398E008C0943 /* QuizzerDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzerDemoTests.swift; sourceTree = "<group>"; };
+		2320EA9F1A3E47C9008C0943 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		2320EAA11A3E4839008C0943 /* QuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +83,9 @@
 			children = (
 				2320EA7F1A3E398E008C0943 /* AppDelegate.swift */,
 				2320EA811A3E398E008C0943 /* ViewController.swift */,
+				2320EA9F1A3E47C9008C0943 /* QuestionViewController.swift */,
 				2320EA831A3E398E008C0943 /* Main.storyboard */,
+				2320EAA11A3E4839008C0943 /* QuestionView.swift */,
 				2320EA861A3E398E008C0943 /* Images.xcassets */,
 				2320EA881A3E398E008C0943 /* LaunchScreen.xib */,
 				2320EA7D1A3E398E008C0943 /* Supporting Files */,
@@ -212,8 +218,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2320EAA21A3E4839008C0943 /* QuestionView.swift in Sources */,
 				2320EA821A3E398E008C0943 /* ViewController.swift in Sources */,
 				2320EA801A3E398E008C0943 /* AppDelegate.swift in Sources */,
+				2320EAA01A3E47C9008C0943 /* QuestionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +349,7 @@
 				INFOPLIST_FILE = QuizzerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -351,6 +360,7 @@
 				INFOPLIST_FILE = QuizzerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
