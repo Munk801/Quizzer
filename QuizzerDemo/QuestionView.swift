@@ -25,7 +25,7 @@ class QuestionView: UIView {
         self.question = question
         
         // Set the background to white
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
         self.layer.shouldRasterize = true
         // Original
         self.originalCenter = center
@@ -35,34 +35,34 @@ class QuestionView: UIView {
         // Question
         questionField = UITextView()
         questionField.text = question
-        questionField.editable = false
+        questionField.isEditable = false
         questionField.backgroundColor = UIColor(red: 232.0/255.0, green: 186.0/255.0, blue: 188/255.0, alpha: 1.0)
-        questionField.textAlignment = NSTextAlignment.Center
-        questionField.frame = CGRectIntegral(CGRectMake(
-            0.0 + self.imageMarginSpace,
-            0.0 + self.imageMarginSpace,
-            self.frame.width - (2 * self.imageMarginSpace),
-            self.frame.height - (2 * self.imageMarginSpace)
-            ))
+        questionField.textAlignment = NSTextAlignment.center
+        questionField.frame = CGRect(
+            x: 0.0 + self.imageMarginSpace,
+            y: 0.0 + self.imageMarginSpace,
+            width: self.frame.width - (2 * self.imageMarginSpace),
+            height: self.frame.height - (2 * self.imageMarginSpace)
+            ).integral
         questionField.font = self.futura
-        questionField.textColor = UIColor.blackColor()
+        questionField.textColor = UIColor.black
         questionField.layer.shouldRasterize = true
         self.addSubview(questionField)
         self.applyShadow()
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     func applyShadow() {
         self.layer.cornerRadius = 6.0
-        self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.3
         self.layer.shadowOffset = CGSize(width: 0, height: -3)
     }
     
-    func swipe(answer: Bool) {
+    func swipe(_ answer: Bool) {
         animator.removeAllBehaviors()
         
         // If the answer is false, Move to the left
@@ -70,20 +70,20 @@ class QuestionView: UIView {
         let gravityX = answer ? 0.5 : -0.5
         let magnitude = answer ? 20.0 : -20.0
         let gravityBehavior:UIGravityBehavior = UIGravityBehavior(items: [self])
-        gravityBehavior.gravityDirection = CGVectorMake(CGFloat(gravityX), 0)
+        gravityBehavior.gravityDirection = CGVector(dx: CGFloat(gravityX), dy: 0)
         animator.addBehavior(gravityBehavior)
         
-        let pushBehavior:UIPushBehavior = UIPushBehavior(items: [self], mode: UIPushBehaviorMode.Instantaneous)
+        let pushBehavior:UIPushBehavior = UIPushBehavior(items: [self], mode: UIPushBehaviorMode.instantaneous)
         pushBehavior.magnitude = CGFloat(magnitude)
         animator.addBehavior(pushBehavior)
         
     }
     
     func returnToCenter() {
-        UIView.animateWithDuration(0.8, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
+        UIView.animate(withDuration: 0.8, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .allowUserInteraction, animations: {
             self.center = self.originalCenter
             }, completion: { finished in
-                println("Finished Animation")}
+                print("Finished Animation")}
         )
         
     }
