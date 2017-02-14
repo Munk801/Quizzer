@@ -16,11 +16,11 @@ class QuestionViewController: UIViewController {
     @IBOutlet var scoreView: UITextView!
     
 
-    @IBAction func truePressed(sender: AnyObject) {
+    @IBAction func truePressed(_ sender: AnyObject) {
         self.determineJudgement(true)
     }
     
-    @IBAction func falsePressed(sender: AnyObject) {
+    @IBAction func falsePressed(_ sender: AnyObject) {
         self.determineJudgement(false)
     }
     
@@ -49,7 +49,7 @@ class QuestionViewController: UIViewController {
         
         for (question, answer) in self.data {
             currentQuestionView = QuestionView(
-                frame: CGRectMake(0, 0, self.view.frame.width - 50, self.view.frame.width - 50),
+                frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.width - 50),
                 question: question,
                 answer: answer,
                 center: CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 3)
@@ -62,7 +62,7 @@ class QuestionViewController: UIViewController {
         }
        
         // Add Pan Gesture Recognizer
-        let pan = UIPanGestureRecognizer(target: self, action: Selector("handlePan:"))
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(QuestionViewController.handlePan(_:)))
         self.view.addGestureRecognizer(pan)
     }
 
@@ -71,7 +71,7 @@ class QuestionViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func determineJudgement(answer: Bool) {
+    func determineJudgement(_ answer: Bool) {
         
         // If its the right answer, set the score
         if self.currentQuestionView.answer == answer && !self.done{
@@ -83,10 +83,10 @@ class QuestionViewController: UIViewController {
         self.currentQuestionView.swipe(answer)
         
         // Handle when we have no more matches
-        self.questionViews.removeAtIndex(self.questionViews.count - 1)
+        self.questionViews.remove(at: self.questionViews.count - 1)
         if self.questionViews.count - 1 < 0 {
-            var noMoreView = QuestionView(
-                frame: CGRectMake(0, 0, self.view.frame.width - 50, self.view.frame.width - 50),
+            let noMoreView = QuestionView(
+                frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.width - 50),
                 question: "No More Questions :(",
                 answer: false,
                 center: CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 3)
@@ -102,11 +102,11 @@ class QuestionViewController: UIViewController {
         
     }
     
-    func handlePan(gesture: UIPanGestureRecognizer) {
+    func handlePan(_ gesture: UIPanGestureRecognizer) {
         // Is this gesture state finished??
-        if gesture.state == UIGestureRecognizerState.Ended {
+        if gesture.state == UIGestureRecognizerState.ended {
             // Determine if we need to swipe off or return to center
-            let location = gesture.locationInView(self.view)
+            _ = gesture.location(in: self.view)
             if self.currentQuestionView.center.x / self.view.bounds.maxX > 0.8 {
                 self.determineJudgement(true)
             }
@@ -117,8 +117,8 @@ class QuestionViewController: UIViewController {
                 self.currentQuestionView.returnToCenter()
             }
         }
-        let translation = gesture.translationInView(self.currentQuestionView)
+        let translation = gesture.translation(in: self.currentQuestionView)
         self.currentQuestionView.center = CGPoint(x: self.currentQuestionView!.center.x + translation.x, y: self.currentQuestionView!.center.y + translation.y)
-        gesture.setTranslation(CGPointZero, inView: self.view)
+        gesture.setTranslation(CGPoint.zero, in: self.view)
     }
 }
